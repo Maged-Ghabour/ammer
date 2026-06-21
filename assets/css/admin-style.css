@@ -1,0 +1,79 @@
+﻿/* --- Ammer Custom Admin Dashboard Styles --- */
+
+/* Change default font to Tajawal */
+body.wp-admin,
+.wp-admin h1, .wp-admin h2, .wp-admin h3, .wp-admin h4, .wp-admin h5, .wp-admin h6,
+.wp-admin p, .wp-admin a, .wp-admin li, .wp-admin span, .wp-admin div,
+#adminmenu, #wpadminbar {
+    font-family: 'Tajawal', sans-serif !important;
+}
+
+/* Sidebar Menu Colors */
+#adminmenu, #adminmenuback, #adminmenuwrap {
+    background-color: #0E2A42 !important; /* A slightly darker blue for contrast */
+}
+
+/* Menu Items */
+#adminmenu a {
+    color: #cbd5e1 !important;
+}
+
+#adminmenu a:hover,
+#adminmenu li.menu-top:hover,
+#adminmenu li.opensub > a.menu-top,
+#adminmenu li > a.menu-top:focus {
+    color: #ffffff !important;
+    background-color: #0d4b79 !important;
+}
+
+/* Active Menu Item */
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, 
+#adminmenu li.current a.menu-top,
+.folded #adminmenu li.wp-has-current-submenu, 
+.folded #adminmenu li.current.menu-top {
+    background: #0d4b79 !important;
+    color: #ffffff !important;
+}
+
+/* Submenu */
+#adminmenu .wp-submenu,
+#adminmenu .wp-has-current-submenu .wp-submenu,
+#adminmenu .wp-has-current-submenu.opensub .wp-submenu,
+.folded #adminmenu .wp-has-current-submenu .wp-submenu,
+#adminmenu a.wp-has-current-submenu:focus + .wp-submenu {
+    background-color: #0a1f33 !important;
+}
+
+#adminmenu .wp-submenu a:hover,
+#adminmenu .wp-submenu a:focus {
+    color: #60a5fa !important;
+}
+
+/* Primary Buttons */
+.wp-core-ui .button-primary {
+    background: #0d4b79 !important;
+    border-color: #0d4b79 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-radius: 4px !important;
+}
+
+.wp-core-ui .button-primary:hover {
+    background: #0a3a5e !important;
+}
+
+/* Notification Badges */
+#adminmenu .awaiting-mod, 
+#adminmenu .update-plugins {
+    background-color: #ef4444 !important;
+    color: #fff !important;
+}
+
+/* ACF Customizations in Admin */
+.acf-box h2.hndle {
+    font-family: 'Tajawal', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #0d4b79 !important;
+}
