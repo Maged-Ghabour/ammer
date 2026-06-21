@@ -175,11 +175,11 @@ get_header(); ?>
 
         <div class="ba-container" id="ba-container">
             <!-- After Image (Background) -->
-            <div class="ba-img ba-after" id="ba-after-layer" style="background-image: url('assets/before1.png');"></div>
+            <div class="ba-img ba-after" id="ba-after-layer" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/before1.png');"></div>
             <!-- Before Image (Clipped layer) -->
             <!-- Before Image (Clipped layer) -->
             <div class="ba-img ba-before" id="ba-before-layer"
-                style="background-image: url('assets/after1.png'); width: 50%;"></div>
+                style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/after1.png'); width: 50%;"></div>
 
             <!-- Handle -->
             <div class="ba-slider-handle" id="ba-handle" style="left: 50%;">
@@ -198,16 +198,16 @@ get_header(); ?>
 
         <div class="ba-thumbnails">
             <!-- حالة 1 -->
-            <div class="thumbnail active" data-before="assets/before1.png" data-after="assets/after1.png">
-                <img loading="lazy" src="assets/after1.png" alt="حالة 1 - بعد">
+            <div class="thumbnail active" data-before="<?php echo get_template_directory_uri(); ?>/assets/before1.png" data-after="<?php echo get_template_directory_uri(); ?>/assets/after1.png">
+                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/after1.png" alt="حالة 1 - بعد">
             </div>
             <!-- حالة 2 -->
-            <div class="thumbnail" data-before="assets/before2.png" data-after="assets/after2.png">
-                <img loading="lazy" src="assets/after2.png" alt="حالة 2 - بعد">
+            <div class="thumbnail" data-before="<?php echo get_template_directory_uri(); ?>/assets/before2.png" data-after="<?php echo get_template_directory_uri(); ?>/assets/after2.png">
+                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/after2.png" alt="حالة 2 - بعد">
             </div>
             <!-- حالة 3 -->
-            <div class="thumbnail" data-before="assets/before3.png" data-after="assets/after3.png">
-                <img loading="lazy" src="assets/after3.png" alt="حالة 3 - بعد">
+            <div class="thumbnail" data-before="<?php echo get_template_directory_uri(); ?>/assets/before3.png" data-after="<?php echo get_template_directory_uri(); ?>/assets/after3.png">
+                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/after3.png" alt="حالة 3 - بعد">
             </div>
         </div>
 
@@ -370,7 +370,7 @@ get_header(); ?>
             <!-- Post 1 -->
             <article class="blog-card">
                 <div class="blog-image">
-                    <img loading="lazy" src="assets/blog1.png" alt="كيف تحافظ على صحة أسنانك يوميًا؟">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/blog1.png" alt="كيف تحافظ على صحة أسنانك يوميًا؟">
                 </div>
                 <div class="blog-content">
                     <h3 class="blog-title">كيف تحافظ على صحة أسنانك يوميًا؟</h3>
@@ -381,7 +381,7 @@ get_header(); ?>
             <!-- Post 2 -->
             <article class="blog-card">
                 <div class="blog-image">
-                    <img loading="lazy" src="assets/blog2.png" alt="متى تحتاج لتبييض الأسنان؟">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/blog2.png" alt="متى تحتاج لتبييض الأسنان؟">
                 </div>
                 <div class="blog-content">
                     <h3 class="blog-title">متى تحتاج لتبييض الأسنان؟</h3>
@@ -392,7 +392,7 @@ get_header(); ?>
             <!-- Post 3 -->
             <article class="blog-card">
                 <div class="blog-image">
-                    <img loading="lazy" src="assets/blog3.png" alt="كيف تختار أفضل عيادة أسنان؟">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/blog3.png" alt="كيف تختار أفضل عيادة أسنان؟">
                 </div>
                 <div class="blog-content">
                     <h3 class="blog-title">كيف تختار أفضل عيادة أسنان؟</h3>
@@ -524,3 +524,4 @@ get_header(); ?>
 
     
 <?php get_footer(); ?>
+
