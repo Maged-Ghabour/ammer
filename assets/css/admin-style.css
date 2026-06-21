@@ -1,4 +1,4 @@
-﻿/* --- Ammer Custom Admin Dashboard Styles --- */
+/* --- Ammer Custom Admin Dashboard Styles --- */
 
 /* Change default font to Tajawal */
 body.wp-admin,
@@ -6,6 +6,15 @@ body.wp-admin,
 .wp-admin p, .wp-admin a, .wp-admin li, .wp-admin span, .wp-admin div,
 #adminmenu, #wpadminbar {
     font-family: 'Tajawal', sans-serif !important;
+}
+
+/* Fix missing dashboard icons */
+.dashicons, 
+.dashicons-before:before,
+#adminmenu div.wp-menu-image:before,
+#wpadminbar .ab-icon:before,
+#wpadminbar .ab-item:before {
+    font-family: dashicons !important;
 }
 
 /* Sidebar Menu Colors */

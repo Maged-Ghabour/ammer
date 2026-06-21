@@ -73,6 +73,7 @@ add_action( 'wp_enqueue_scripts', 'ammer_scripts' );
 /**
  * ACF Auto-register Field Group for Front Page
  */
+function ammer_register_acf_fields() {
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array(
@@ -262,6 +263,8 @@ acf_add_local_field_group(array(
 ));
 
 endif;
+}
+add_action('acf/init', 'ammer_register_acf_fields');
 
 /**
  * Custom Login Page Styles

@@ -47,9 +47,9 @@ get_header(); ?>
         <!-- Hero Image Area -->
         <div class="hero-image">
             <?php 
-            \ = get_field('hero_image');
-            if(\): ?>
-                <img src="<?php echo esc_url(\); ?>" alt="Hero Image">
+            $hero_image = get_field('hero_image');
+            if($hero_image): ?>
+                <img src="<?php echo esc_url($hero_image); ?>" alt="Hero Image">
             <?php else: ?>
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/hero.png" alt="عيادة أسنان - د. عامر الريمي">
             <?php endif; ?>
@@ -72,20 +72,20 @@ get_header(); ?>
     <div class="services-grid">
         <?php if( have_rows('services_list') ): ?>
             <?php while( have_rows('services_list') ): the_row(); 
-                \ = get_sub_field('icon');
-                \ = get_sub_field('title');
-                \ = get_sub_field('description');
+                $icon = get_sub_field('icon');
+                $title = get_sub_field('title');
+                $description = get_sub_field('description');
             ?>
             <div class="service-card">
                 <div class="card-bg-icon">
                     <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg1.png" alt="">
                 </div>
                 <div class="card-icon">
-                    <img loading="lazy" src="<?php echo esc_url(\); ?>" alt="">
+                    <img loading="lazy" src="<?php echo esc_url($icon); ?>" alt="">
                 </div>
                 <div class="card-content">
-                    <h4 class="card-title"><?php echo esc_html(\); ?></h4>
-                    <p class="card-desc"><?php echo esc_html(\); ?></p>
+                    <h4 class="card-title"><?php echo esc_html($title); ?></h4>
+                    <p class="card-desc"><?php echo esc_html($description); ?></p>
                 </div>
             </div>
             <?php endwhile; ?>
@@ -128,9 +128,9 @@ get_header(); ?>
         </div>
         <div class="trust-image">
             <?php 
-            \ = get_field('trust_image');
-            if(\): ?>
-                <img loading="lazy" src="<?php echo esc_url(\); ?>" alt="Trust Image">
+            $trust_image = get_field('trust_image');
+            if($trust_image): ?>
+                <img loading="lazy" src="<?php echo esc_url($trust_image); ?>" alt="Trust Image">
             <?php else: ?>
                 <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/trust.png" alt="عيادة طب الأسنان">
             <?php endif; ?>
