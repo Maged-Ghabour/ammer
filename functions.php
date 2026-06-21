@@ -313,6 +313,36 @@ function ammer_customize_register( $wp_customize ) {
         'section'     => 'ammer_contact_settings',
         'type'        => 'text',
     ) );
+
+    $wp_customize->add_setting( 'facebook_url', array(
+        'default'           => 'https://www.facebook.com/dr.amer.elrimi/',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'facebook_url', array(
+        'label'       => __( 'Facebook URL', 'ammer' ),
+        'section'     => 'ammer_contact_settings',
+        'type'        => 'url',
+    ) );
+
+    $wp_customize->add_setting( 'instagram_url', array(
+        'default'           => 'https://www.instagram.com/dr_amer_alrimi',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'instagram_url', array(
+        'label'       => __( 'Instagram URL', 'ammer' ),
+        'section'     => 'ammer_contact_settings',
+        'type'        => 'url',
+    ) );
+
+    $wp_customize->add_setting( 'tiktok_url', array(
+        'default'           => 'https://www.tiktok.com/@dr_amer_alrimi',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'tiktok_url', array(
+        'label'       => __( 'TikTok URL', 'ammer' ),
+        'section'     => 'ammer_contact_settings',
+        'type'        => 'url',
+    ) );
 }
 add_action( 'customize_register', 'ammer_customize_register' );
 
