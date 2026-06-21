@@ -67,6 +67,7 @@ function ammer_scripts() {
 	// Enqueue GSAP
 	wp_enqueue_script( 'gsap-core', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array(), null, true );
 	wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js', array('gsap-core'), null, true );
+    wp_enqueue_script( 'ammer-main-js', get_template_directory_uri() . '/assets/js/main.js', array('gsap-scrolltrigger'), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'ammer_scripts' );
 
@@ -361,4 +362,5 @@ function get_whatsapp_url() {
     $number = preg_replace('/[^0-9]/', '', $number);
     return 'https://wa.me/' . $number;
 }
+
 
