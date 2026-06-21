@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Template Name: Front Page
  */
@@ -91,30 +91,91 @@ get_header(); ?>
             <?php endwhile; ?>
         <?php else: ?>
             <!-- Fallback Static Content -->
+
+            <!-- Card 1 -->
             <div class="service-card">
-                <div class="card-bg-icon"><img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg1.png" alt=""></div>
-                <div class="card-icon"><img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon1.png" alt=""></div>
+                <div class="card-bg-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg1.png" alt="">
+                </div>
+                <div class="card-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon1.png" alt="">
+                </div>
                 <div class="card-content">
-                    <h4 class="card-title">تجميل الأسنان والابتسامة</h4>
-                    <p class="card-desc">ابتسامة هوليود المخصصة.</p>
+                    <h4 class="card-title">علاج العصب والخراجات</h4>
+                    <p class="card-desc">علاج دقيق وتخفيف للألم.</p>
                 </div>
             </div>
+
+            <!-- Card 2 -->
             <div class="service-card">
-                <div class="card-bg-icon"><img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg2.png" alt=""></div>
-                <div class="card-icon"><img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon2.png" alt=""></div>
+                <div class="card-bg-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg2.png" alt="">
+                </div>
+                <div class="card-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon2.png" alt="">
+                </div>
                 <div class="card-content">
-                    <h4 class="card-title">التركيبات التجميلية</h4>
-                    <p class="card-desc">أجود الخامات العالمية الآمنة.</p>
+                    <h4 class="card-title">تركيبات الزيركون</h4>
+                    <p class="card-desc">قوة وجمال طبيعي للأسنان.</p>
                 </div>
             </div>
+
+            <!-- Card 3 -->
             <div class="service-card">
-                <div class="card-bg-icon"><img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg3.png" alt=""></div>
-                <div class="card-icon"><img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon3.png" alt=""></div>
+                <div class="card-bg-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg3.png" alt="">
+                </div>
+                <div class="card-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon3.png" alt="">
+                </div>
                 <div class="card-content">
-                    <h4 class="card-title">زراعة الأسنان</h4>
-                    <p class="card-desc">استعادة ابتسامتك الطبيعية بكفاءة.</p>
+                    <h4 class="card-title">تبييض الأسنان</h4>
+                    <p class="card-desc">ابتسامة ناصعة البياض وجذابة.</p>
                 </div>
             </div>
+
+            <!-- Card 4 -->
+            <div class="service-card">
+                <div class="card-bg-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg4.png" alt="">
+                </div>
+                <div class="card-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon4.png" alt="">
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">الحشوات التجميلية</h4>
+                    <p class="card-desc">ترميم طبيعي ومتناسق.</p>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="service-card">
+                <div class="card-bg-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg5.png" alt="">
+                </div>
+                <div class="card-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon5.png" alt="">
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">خلع الأسنان العادي والجراحي</h4>
+                    <p class="card-desc">إجراء آمن ومريح للمريض.</p>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="service-card">
+                <div class="card-bg-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg6.png" alt="">
+                </div>
+                <div class="card-icon">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon6.png" alt="">
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">الدايركت فينير</h4>
+                    <p class="card-desc">تحسين فوري لشكل الأسنان.</p>
+                </div>
+            </div>
+        
         <?php endif; ?>
     </div>
 </section>

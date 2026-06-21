@@ -1,3 +1,4 @@
+    
         document.addEventListener('DOMContentLoaded', function () {
             gsap.registerPlugin(ScrollTrigger);
 
@@ -237,4 +238,64 @@
                 
                 btnDown.addEventListener('click', () => {
                     testimonialsList.scrollBy({ top: 220, behavior: 'smooth' });
+                });
+                
+                btnUp.addEventListener('click', () => {
+                    testimonialsList.scrollBy({ top: -220, behavior: 'smooth' });
+                });
+            }
+
+                                    
+
+            // Mobile Menu Logic
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMenuBtn = document.querySelector('.close-menu-btn');
+            const mainNav = document.querySelector('.main-nav');
+            const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+
+            if (mobileMenuBtn && mainNav) {
+                function openMenu() {
+                    mainNav.classList.add('open');
+                    if(mobileOverlay) mobileOverlay.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeMenu() {
+                    mainNav.classList.remove('open');
+                    if(mobileOverlay) mobileOverlay.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+                mobileMenuBtn.addEventListener('click', openMenu);
+                if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+                if(mobileOverlay) mobileOverlay.addEventListener('click', closeMenu);
+            }
+
+            // FAQ Accordion Logic
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(faq => faq.classList.remove('active'));
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        });
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
