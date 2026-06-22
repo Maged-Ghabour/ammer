@@ -70,11 +70,20 @@ get_header(); ?>
     </div>
 
     <div class="services-grid">
-        <?php if( have_rows('services_list') ): ?>
-            <?php while( have_rows('services_list') ): the_row(); 
-                $icon = get_sub_field('icon');
-                $title = get_sub_field('title');
-                $description = get_sub_field('description');
+        <?php 
+        $has_services = false;
+        for($i=1; $i<=6; $i++) {
+            if(get_field('service_' . $i . '_title')) {
+                $has_services = true;
+                break;
+            }
+        }
+        if( $has_services ): 
+            for($i=1; $i<=6; $i++):
+                $icon = get_field('service_' . $i . '_icon');
+                $title = get_field('service_' . $i . '_title');
+                $description = get_field('service_' . $i . '_desc');
+                if(!$title) continue;
             ?>
             <div class="service-card">
                 <div class="card-bg-icon">
@@ -88,7 +97,7 @@ get_header(); ?>
                     <p class="card-desc"><?php echo esc_html($description); ?></p>
                 </div>
             </div>
-            <?php endwhile; ?>
+            <?php endfor; ?>
         <?php else: ?>
             <!-- Fallback Static Content -->
 
@@ -199,27 +208,39 @@ get_header(); ?>
         
         <div class="trust-stats-wrapper">
             <div class="trust-stats">
-                <?php if( have_rows('trust_stats') ): ?>
-                    <?php while( have_rows('trust_stats') ): the_row(); ?>
-                    <div class="stat-item">
-                        <span class="stat-text"><?php the_sub_field('label'); ?></span>
-                        <span class="stat-number" dir="ltr"><?php the_sub_field('number'); ?></span>
-                    </div>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    <div class="stat-item">
-                        <span class="stat-text">تقييم العملاء</span>
-                        <span class="stat-number" dir="ltr" data-val="4.9/5">4.9<small>/5</small></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-text">ابتسامة تم تجميلها</span>
-                        <span class="stat-number" dir="ltr" data-val="10K+">10K+</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-text">سنوات من الخبرة</span>
-                        <span class="stat-number" dir="ltr" data-val="5+">5+</span>
-                    </div>
-                <?php endif; ?>
+                <?php 
+        $has_stats = false;
+        for($i=1; $i<=4; $i++) {
+            if(get_field('stat_' . $i . '_number')) {
+                $has_stats = true;
+                break;
+            }
+        }
+        if( $has_stats ): 
+            for($i=1; $i<=4; $i++):
+                $label = get_field('stat_' . $i . '_label');
+                $number = get_field('stat_' . $i . '_number');
+                if(!$number) continue;
+            ?>
+            <div class="stat-item">
+                <span class="stat-number"><?php echo esc_html($number); ?></span>
+                <span class="stat-label"><?php echo esc_html($label); ?></span>
+            </div>
+            <?php endfor; ?>
+        <?php else: ?>
+            <div class="stat-item">
+                <span class="stat-number">99%</span>
+                <span class="stat-label">نسبة الرضا</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">+15</span>
+                <span class="stat-label">سنة خبرة</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">+5000</span>
+                <span class="stat-label">ابتسامة جديدة</span>
+            </div>
+        <?php endif; ?>
             </div>
         </div>
     </div>
