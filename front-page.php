@@ -169,7 +169,63 @@ get_header(); ?>
     </div>
 </section>
 
-
+<!-- Journey Section -->
+<section class="journey-section container">
+    <div class="journey-grid">
+        <!-- Right Column: Image -->
+        <div class="journey-image">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/رحلة.png" alt="رحلتك نحو ابتسامة صحية ومريحة">
+        </div>
+        
+        <!-- Left Column: Content -->
+        <div class="journey-content">
+            <h2 class="journey-title">رحلتك نحو ابتسامة صحية<br>ومريحة</h2>
+            <p class="journey-subtitle">خطوات بسيطة تبدأ بالحجز وتنتهي بابتسامة أكثر ثقة.</p>
+            
+            <div class="journey-steps">
+                <div class="step-item active">
+                    <div class="step-number">01</div>
+                    <div class="step-text">
+                        <h4 class="step-title">احجز موعدك</h4>
+                        <div class="step-desc-wrapper">
+                            <p class="step-desc">اختر الوقت واليوم المناسب لك لبدء رحلتك.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">02</div>
+                    <div class="step-text">
+                        <h4 class="step-title">الفحص والتشخيص</h4>
+                        <div class="step-desc-wrapper">
+                            <p class="step-desc">تقييم شامل ووضع خطة علاج مناسبة</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">03</div>
+                    <div class="step-text">
+                        <h4 class="step-title">بدء العلاج</h4>
+                        <div class="step-desc-wrapper">
+                            <p class="step-desc">تطبيق خطة العلاج المخصصة بأحدث التقنيات.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">04</div>
+                    <div class="step-text">
+                        <h4 class="step-title">المتابعة</h4>
+                        <div class="step-desc-wrapper">
+                            <p class="step-desc">متابعة دورية لضمان استمرار صحة وجمال ابتسامتك.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Before/After Section -->
     <section class="before-after-section container">
