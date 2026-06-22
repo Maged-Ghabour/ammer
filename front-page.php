@@ -118,6 +118,36 @@ get_header(); ?>
         <div class="trust-content">
             <h2 class="trust-title"><?php echo get_field('trust_title') ? get_field('trust_title') : 'ليش تختار د.عامر الريمي؟'; ?></h2>
             <p class="trust-desc"><?php echo get_field('trust_desc') ? get_field('trust_desc') : 'نحن نفهم أن زيارة طبيب الأسنان قد تكون مقلقة للبعض، لذلك صممنا عيادتنا لتكون بيئة مريحة...'; ?></p>
+            
+            <?php if( have_rows('trust_features_list') ): ?>
+                <div class="trust-features">
+                    <?php while( have_rows('trust_features_list') ) : the_row(); ?>
+                        <div class="feature-item">
+                            <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                            <span class="feature-text"><?php echo get_sub_field('feature_text'); ?></span>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            <?php else: ?>
+                <div class="trust-features">
+                    <div class="feature-item">
+                        <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                        <span class="feature-text">فريق طبي متخصص وذو خبرة</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                        <span class="feature-text">أحدث تقنيات وأجهزة طب الأسنان</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                        <span class="feature-text">خطط علاج تناسب احتياجات كل مريض</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                        <span class="feature-text">متابعة مستمرة بعد العلاج</span>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="trust-image">
             <?php 
