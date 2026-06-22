@@ -71,18 +71,11 @@ get_header(); ?>
 
     <div class="services-grid">
         <?php 
-        $has_services = false;
-        for($i=1; $i<=6; $i++) {
-            if(get_field('service_' . $i . '_title')) {
-                $has_services = true;
-                break;
-            }
-        }
-        if( $has_services ): 
-            for($i=1; $i<=6; $i++):
-                $icon = get_field('service_' . $i . '_icon');
-                $title = get_field('service_' . $i . '_title');
-                $description = get_field('service_' . $i . '_desc');
+        if( have_rows('services_list') ): 
+            while( have_rows('services_list') ) : the_row();
+                $icon = get_sub_field('icon');
+                $title = get_sub_field('title');
+                $description = get_sub_field('desc');
                 if(!$title) continue;
             ?>
             <div class="service-card">
@@ -90,101 +83,20 @@ get_header(); ?>
                     <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg1.png" alt="">
                 </div>
                 <div class="card-icon">
+                    <?php if($icon): ?>
                     <img loading="lazy" src="<?php echo esc_url($icon); ?>" alt="">
+                    <?php else: ?>
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon1.png" alt="">
+                    <?php endif; ?>
                 </div>
                 <div class="card-content">
                     <h4 class="card-title"><?php echo esc_html($title); ?></h4>
                     <p class="card-desc"><?php echo esc_html($description); ?></p>
                 </div>
             </div>
-            <?php endfor; ?>
+            <?php endwhile; ?>
         <?php else: ?>
-            <!-- Fallback Static Content -->
-
-            <!-- Card 1 -->
-            <div class="service-card">
-                <div class="card-bg-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg1.png" alt="">
-                </div>
-                <div class="card-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon1.png" alt="">
-                </div>
-                <div class="card-content">
-                    <h4 class="card-title">علاج العصب والخراجات</h4>
-                    <p class="card-desc">علاج دقيق وتخفيف للألم.</p>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="service-card">
-                <div class="card-bg-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg2.png" alt="">
-                </div>
-                <div class="card-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon2.png" alt="">
-                </div>
-                <div class="card-content">
-                    <h4 class="card-title">تركيبات الزيركون</h4>
-                    <p class="card-desc">قوة وجمال طبيعي للأسنان.</p>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="service-card">
-                <div class="card-bg-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg3.png" alt="">
-                </div>
-                <div class="card-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon3.png" alt="">
-                </div>
-                <div class="card-content">
-                    <h4 class="card-title">تبييض الأسنان</h4>
-                    <p class="card-desc">ابتسامة ناصعة البياض وجذابة.</p>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="service-card">
-                <div class="card-bg-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg4.png" alt="">
-                </div>
-                <div class="card-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon4.png" alt="">
-                </div>
-                <div class="card-content">
-                    <h4 class="card-title">الحشوات التجميلية</h4>
-                    <p class="card-desc">ترميم طبيعي ومتناسق.</p>
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="service-card">
-                <div class="card-bg-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg5.png" alt="">
-                </div>
-                <div class="card-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon5.png" alt="">
-                </div>
-                <div class="card-content">
-                    <h4 class="card-title">خلع الأسنان العادي والجراحي</h4>
-                    <p class="card-desc">إجراء آمن ومريح للمريض.</p>
-                </div>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="service-card">
-                <div class="card-bg-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg6.png" alt="">
-                </div>
-                <div class="card-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/icon6.png" alt="">
-                </div>
-                <div class="card-content">
-                    <h4 class="card-title">الدايركت فينير</h4>
-                    <p class="card-desc">تحسين فوري لشكل الأسنان.</p>
-                </div>
-            </div>
-        
+            <p style="text-align: center; width: 100%; grid-column: 1 / -1;">يرجى إضافة الخدمات من لوحة التحكم.</p>
         <?php endif; ?>
     </div>
 </section>
@@ -209,38 +121,20 @@ get_header(); ?>
         <div class="trust-stats-wrapper">
             <div class="trust-stats">
                 <?php 
-        $has_stats = false;
-        for($i=1; $i<=4; $i++) {
-            if(get_field('stat_' . $i . '_number')) {
-                $has_stats = true;
-                break;
-            }
-        }
-        if( $has_stats ): 
-            for($i=1; $i<=4; $i++):
-                $label = get_field('stat_' . $i . '_label');
-                $number = get_field('stat_' . $i . '_number');
-                if(!$number) continue;
-            ?>
-            <div class="stat-item">
-                <span class="stat-number"><?php echo esc_html($number); ?></span>
-                <span class="stat-label"><?php echo esc_html($label); ?></span>
-            </div>
-            <?php endfor; ?>
-        <?php else: ?>
-            <div class="stat-item">
-                <span class="stat-number">99%</span>
-                <span class="stat-label">نسبة الرضا</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">+15</span>
-                <span class="stat-label">سنة خبرة</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">+5000</span>
-                <span class="stat-label">ابتسامة جديدة</span>
-            </div>
-        <?php endif; ?>
+                if( have_rows('trust_stats_list') ): 
+                    while( have_rows('trust_stats_list') ) : the_row();
+                        $label = get_sub_field('label');
+                        $number = get_sub_field('number');
+                        if(!$number) continue;
+                    ?>
+                    <div class="stat-item">
+                        <span class="stat-number"><?php echo esc_html($number); ?></span>
+                        <span class="stat-label"><?php echo esc_html($label); ?></span>
+                    </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p style="text-align: right; width: 100%; color: var(--text-light);">يرجى إضافة الإحصائيات من لوحة التحكم.</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -251,8 +145,8 @@ get_header(); ?>
 <!-- Before/After Section -->
     <section class="before-after-section container">
         <div class="ba-header">
-            <h2 class="section-title">شاهد الفرق الحقيقي</h2>
-            <p class="section-subtitle">نتائج حقيقية تمنحك<br>ابتسامة أكثر جمالاً وثقة.</p>
+            <h2 class="section-title"><?php echo get_field('ba_title') ? get_field('ba_title') : 'شاهد الفرق الحقيقي'; ?></h2>
+            <p class="section-subtitle"><?php echo get_field('ba_subtitle') ? nl2br(get_field('ba_subtitle')) : 'نتائج حقيقية تمنحك<br>ابتسامة أكثر جمالاً وثقة.'; ?></p>
         </div>
 
         <?php
@@ -320,8 +214,8 @@ get_header(); ?>
             <!-- Right Column: Info -->
             <div class="testimonials-info">
                 <div class="info-content">
-                    <h2 class="section-title">ماذا يقول مرضانا؟</h2>
-                    <p class="section-subtitle">قصص حقيقية من المرضى<br>الذين أعادوا اكتشاف ابتسامتهم</p>
+                    <h2 class="section-title"><?php echo get_field('testimonials_title') ? get_field('testimonials_title') : 'ماذا يقول مرضانا؟'; ?></h2>
+                    <p class="section-subtitle"><?php echo get_field('testimonials_subtitle') ? nl2br(get_field('testimonials_subtitle')) : 'قصص حقيقية من المرضى<br>الذين أعادوا اكتشاف ابتسامتهم'; ?></p>
                 </div>
 
                 <div class="testimonials-controls">
@@ -386,8 +280,8 @@ get_header(); ?>
     <!-- Blog Section -->
     <section class="blog-section container">
         <div class="blog-header">
-            <h2 class="section-title">من مكتب طبيب الأسنان</h2>
-            <p class="section-subtitle">نشارككم نصائح ومعلومات تساعدكم<br>في الحفاظ على صحة أسنانكم.</p>
+            <h2 class="section-title"><?php echo get_field('blog_title') ? get_field('blog_title') : 'من مكتب طبيب الأسنان'; ?></h2>
+            <p class="section-subtitle"><?php echo get_field('blog_subtitle') ? nl2br(get_field('blog_subtitle')) : 'نشارككم نصائح ومعلومات تساعدكم<br>في الحفاظ على صحة أسنانكم.'; ?></p>
         </div>
 
         <div class="blog-grid">
@@ -430,8 +324,8 @@ get_header(); ?>
     <!-- CTA Section -->
     <section class="cta-section container">
         <div class="cta-box">
-            <h2 class="cta-title">جاهز لابتسامة أكثر ثقة؟</h2>
-            <p class="cta-subtitle">احجز موعدك اليوم واستمتع بخدمة طبية متكاملة تناسب احتياجاتك.</p>
+            <h2 class="cta-title"><?php echo get_field('cta_title') ? get_field('cta_title') : 'جاهز لابتسامة أكثر ثقة؟'; ?></h2>
+            <p class="cta-subtitle"><?php echo get_field('cta_subtitle') ? nl2br(get_field('cta_subtitle')) : 'احجز موعدك اليوم واستمتع بخدمة طبية متكاملة تناسب احتياجاتك.'; ?></p>
             <a href="<?php echo esc_url(get_whatsapp_url()); ?>" class="btn btn-white" target="_blank">احجز موعد الآن</a>
         </div>
     </section>
@@ -441,8 +335,8 @@ get_header(); ?>
         <div class="faq-grid">
             <!-- Right Column: Info -->
             <div class="faq-info">
-                <h2 class="section-title">إجابات على أسئلتك<br>المتعلقة بالعناية<br>بالأسنان</h2>
-                <p class="section-subtitle">تعرف على أهم المعلومات والإجابات الشائعة حول<br>خدمات الأسنان.</p>
+                <h2 class="section-title"><?php echo get_field('faq_title') ? nl2br(get_field('faq_title')) : 'إجابات على أسئلتك<br>المتعلقة بالعناية<br>بالأسنان'; ?></h2>
+                <p class="section-subtitle"><?php echo get_field('faq_subtitle') ? nl2br(get_field('faq_subtitle')) : 'تعرف على أهم المعلومات والإجابات الشائعة حول<br>خدمات الأسنان.'; ?></p>
             </div>
 
             <!-- Left Column: Accordion -->
@@ -489,10 +383,10 @@ get_header(); ?>
     <section class="newsletter-section container">
         <div class="newsletter-grid">
             <div class="newsletter-title">
-                <h2>حافظ على ابتسامتك<br>مشرقة دائمًا</h2>
+                <h2><?php echo get_field('newsletter_title') ? nl2br(get_field('newsletter_title')) : 'حافظ على ابتسامتك<br>مشرقة دائمًا'; ?></h2>
             </div>
             <div class="newsletter-content">
-                <p>اشترك ليصلك أحدث النصائح والعروض الخاصة<br>بخدمات الأسنان.</p>
+                <p><?php echo get_field('newsletter_content') ? nl2br(get_field('newsletter_content')) : 'اشترك ليصلك أحدث النصائح والعروض الخاصة<br>بخدمات الأسنان.'; ?></p>
                 <form class="newsletter-form">
                     <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
                     <button type="submit" class="btn btn-primary">اشترك</button>
