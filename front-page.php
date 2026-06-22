@@ -126,18 +126,25 @@ get_header(); ?>
         <div class="trust-stats-wrapper">
             <div class="trust-stats">
                 <?php 
+                $has_valid_stats = false;
                 if( have_rows('trust_stats_list') ): 
                     while( have_rows('trust_stats_list') ) : the_row();
                         $label = get_sub_field('label');
                         $number = get_sub_field('number');
-                        if(!$number) continue;
-                    ?>
-                    <div class="stat-item">
-                        <span class="stat-number"><?php echo esc_html($number); ?></span>
-                        <span class="stat-label"><?php echo esc_html($label); ?></span>
-                    </div>
-                    <?php endwhile; ?>
-                <?php else: ?>
+                        if($number) {
+                            $has_valid_stats = true;
+                        ?>
+                            <div class="stat-item">
+                                <span class="stat-number"><?php echo esc_html($number); ?></span>
+                                <span class="stat-label"><?php echo esc_html($label); ?></span>
+                            </div>
+                        <?php
+                        }
+                    endwhile; 
+                endif; 
+                
+                if(!$has_valid_stats):
+                ?>
                     <div class="stat-item">
                         <span class="stat-number">99%</span>
                         <span class="stat-label">نسبة الرضا</span>
