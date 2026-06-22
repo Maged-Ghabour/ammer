@@ -174,7 +174,7 @@ body {
     grid-area: content;
     padding-top: 15px;
     justify-self: end;
-
+    max-width: 400px;
 }
 
 .hero-content p {
@@ -189,7 +189,6 @@ body {
 .hero-buttons {
     display: flex;
     gap: 15px;
-    justify-content: flex-end;
 }
 
 /* Booking Area */

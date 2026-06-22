@@ -17,8 +17,14 @@ get_header(); ?>
         <div class="hero-content">
             <p><?php echo get_field('hero_subtitle') ? get_field('hero_subtitle') : 'نقدم لك أحدث التقنيات في عالم طب وتجميل الأسنان لنمنحك الابتسامة التي تستحقها بلمسة فنية وخبرة طبية لا تضاهى.'; ?></p>
             <div class="hero-buttons">
-                <a href="#services" class="btn btn-outline">خدماتنا</a>
-                <a href="<?php echo esc_url(get_whatsapp_url()); ?>" class="btn btn-primary" target="_blank">تواصل معنا</a>
+                <?php
+                $btn1_text = get_field('btn1_text') ? get_field('btn1_text') : 'تواصل معنا';
+                $btn1_url = get_field('btn1_url') ? get_field('btn1_url') : get_whatsapp_url();
+                $btn2_text = get_field('btn2_text') ? get_field('btn2_text') : 'خدماتنا';
+                $btn2_url = get_field('btn2_url') ? get_field('btn2_url') : '#services';
+                ?>
+                <a href="<?php echo esc_url($btn1_url); ?>" class="btn btn-primary" target="_blank"><?php echo esc_html($btn1_text); ?></a>
+                <a href="<?php echo esc_url($btn2_url); ?>" class="btn btn-outline"><?php echo esc_html($btn2_text); ?></a>
             </div>
         </div>
 
@@ -162,38 +168,28 @@ get_header(); ?>
         <div class="trust-stats-wrapper">
             <div class="trust-stats">
                 <?php 
-                $has_valid_stats = false;
-                if( have_rows('trust_stats_list') ): 
-                    while( have_rows('trust_stats_list') ) : the_row();
-                        $label = get_sub_field('label');
-                        $number = get_sub_field('number');
-                        if($number) {
-                            $has_valid_stats = true;
+                for ($i = 1; $i <= 4; $i++) {
+                    $label = get_field('stat_'.$i.'_label');
+                    $number = get_field('stat_'.$i.'_number');
+                    
+                    if (!$label && !$number) {
+                        // Fallbacks if nothing is set at all (e.g., initial state)
+                        if ($i == 1) { $label = 'تقييم المرضى'; $number = '4.9<small>/5</small>'; }
+                        if ($i == 2) { $label = 'حالة تم علاجها'; $number = '10K+'; }
+                        if ($i == 3) { $label = 'سنوات من الخبرة'; $number = '5+'; }
+                        if ($i == 4) { $label = 'ابتسامة بثقة أكبر'; $number = '5K+'; }
+                    }
+
+                    if ($label || $number) {
                         ?>
-                            <div class="stat-item">
-                                <span class="stat-number"><?php echo esc_html($number); ?></span>
-                                <span class="stat-label"><?php echo esc_html($label); ?></span>
-                            </div>
+                        <div class="stat-item">
+                            <span class="stat-text"><?php echo esc_html($label); ?></span>
+                            <span class="stat-number" dir="ltr"><?php echo wp_kses_post($number); ?></span>
+                        </div>
                         <?php
-                        }
-                    endwhile; 
-                endif; 
-                
-                if(!$has_valid_stats):
+                    }
+                }
                 ?>
-                    <div class="stat-item">
-                        <span class="stat-number">99%</span>
-                        <span class="stat-label">نسبة الرضا</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">+15</span>
-                        <span class="stat-label">سنة خبرة</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">+5000</span>
-                        <span class="stat-label">ابتسامة جديدة</span>
-                    </div>
-                <?php endif; ?>
             </div>
         </div>
     </div>
