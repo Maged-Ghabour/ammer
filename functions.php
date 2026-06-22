@@ -684,3 +684,36 @@ acf_add_local_field_group(array(
 ));
 
 endif;
+
+// Register 'faq' Custom Post Type
+function ammer_register_faq_cpt() {
+    $labels = array(
+        'name'               => 'الأسئلة الشائعة',
+        'singular_name'      => 'سؤال',
+        'menu_name'          => 'الأسئلة الشائعة',
+        'add_new'            => 'أضف سؤال جديد',
+        'add_new_item'       => 'أضف سؤال جديد',
+        'edit_item'          => 'تعديل السؤال',
+        'new_item'           => 'سؤال جديد',
+        'view_item'          => 'عرض السؤال',
+        'search_items'       => 'ابحث في الأسئلة',
+        'not_found'          => 'لم يتم العثور على أي أسئلة',
+        'not_found_in_trash' => 'لا توجد أسئلة في سلة المهملات'
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'public'              => true,
+        'has_archive'         => false,
+        'publicly_queryable'  => false,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_position'       => 22,
+        'menu_icon'           => 'dashicons-editor-help',
+        'supports'            => array( 'title', 'editor' ),
+        'rewrite'             => false,
+    );
+
+    register_post_type( 'faq', $args );
+}
+add_action( 'init', 'ammer_register_faq_cpt' );

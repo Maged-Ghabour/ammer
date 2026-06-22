@@ -447,86 +447,40 @@ get_header(); ?>
 
             <!-- Left Column: Accordion -->
             <div class="faq-accordion">
-                <div class="faq-item active">
-                    <div class="faq-question">
-                        <h3>هل الاستشارة الأولى متاحة؟</h3>
-                        <span class="faq-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="17" y1="7" x2="7" y2="17"></line>
-                                <polyline points="17 17 7 17 7 7"></polyline>
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>نعم، يمكنك حجز استشارة للتعرف على حالتك وخيارات العلاج المناسبة.</p>
-                    </div>
-                </div>
+                <?php
+                $faq_query = new WP_Query(array(
+                    'post_type'      => 'faq',
+                    'posts_per_page' => -1,
+                ));
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>كم تستغرق جلسة تبييض الأسنان؟</h3>
-                        <span class="faq-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="17" y1="7" x2="7" y2="17"></line>
-                                <polyline points="17 17 7 17 7 7"></polyline>
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>تستغرق الجلسة عادة ما بين 45 دقيقة إلى ساعة، وتعتمد على درجة التبييض المطلوبة.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>هل زراعة الأسنان مؤلمة؟</h3>
-                        <span class="faq-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="17" y1="7" x2="7" y2="17"></line>
-                                <polyline points="17 17 7 17 7 7"></polyline>
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>تتم الزراعة تحت التخدير الموضعي، لذلك لن تشعر بأي ألم أثناء العملية. ونوفر العناية الكاملة
-                            لراحتك.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>هل تتوفر خطط دفع مرنة؟</h3>
-                        <span class="faq-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="17" y1="7" x2="7" y2="17"></line>
-                                <polyline points="17 17 7 17 7 7"></polyline>
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>نعم، نوفر خيارات دفع متعددة وميسرة تتناسب مع ميزانيتك لضمان حصولك على الرعاية اللازمة.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>هل زراعة الأسنان مؤلمة؟</h3>
-                        <span class="faq-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="17" y1="7" x2="7" y2="17"></line>
-                                <polyline points="17 17 7 17 7 7"></polyline>
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>تتم الزراعة تحت التخدير الموضعي، لذلك لن تشعر بأي ألم أثناء العملية.</p>
-                    </div>
-                </div>
+                if ( $faq_query->have_posts() ) :
+                    $faq_count = 0;
+                    while ( $faq_query->have_posts() ) : $faq_query->the_post();
+                        $is_active = ($faq_count === 0) ? ' active' : '';
+                        ?>
+                        <div class="faq-item<?php echo $is_active; ?>">
+                            <div class="faq-question">
+                                <h3><?php the_title(); ?></h3>
+                                <span class="faq-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="17" y1="7" x2="7" y2="17"></line>
+                                        <polyline points="17 17 7 17 7 7"></polyline>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="faq-answer">
+                                <?php the_content(); ?>
+                            </div>
+                        </div>
+                        <?php
+                        $faq_count++;
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                    echo '<p style="text-align: center; margin: 40px auto; font-size: 1.2rem; color: #64748b;">لا توجد أسئلة شائعة مضافة حالياً.</p>';
+                endif;
+                ?>
             </div>
         </div>
     </section>
