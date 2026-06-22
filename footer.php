@@ -40,16 +40,6 @@
                 </ul>
             </div>
 
-            <div class="footer-links">
-                <h4>الخدمات</h4>
-                <ul>
-                    <li><a href="#">زراعة الأسنان</a></li>
-                    <li><a href="#">ابتسامة هوليود</a></li>
-                    <li><a href="#">تقويم الأسنان</a></li>
-                    <li><a href="#">تبييض الأسنان</a></li>
-                </ul>
-            </div>
-
             <!-- Left Column -->
             <div class="footer-contact">
                 <h4>تواصل معنا</h4>
