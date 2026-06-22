@@ -340,119 +340,45 @@ get_header(); ?>
 
             <!-- Left Column: List -->
             <div class="testimonials-list">
-                <!-- Card 1 -->
-                <div class="testimonial-card">
-                    <div class="card-top">
-                        <div class="user-meta">
-                            <div class="avatar"></div>
-                            <span class="name">خالد محمد</span>
-                        </div>
-                        <div class="rating-stars">
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="review-text">العيادة نظيفة جدًا والدكتور شرح لي كل خطوات العلاج بكل وضوح.</p>
-                </div>
+                <?php
+                $testimonials_query = new WP_Query(array(
+                    'post_type'      => 'testimonial',
+                    'posts_per_page' => -1,
+                ));
 
-                <!-- Card 2 -->
-                <div class="testimonial-card">
-                    <div class="card-top">
-                        <div class="user-meta">
-                            <div class="avatar"></div>
-                            <span class="name">خالد محمد</span>
+                if ( $testimonials_query->have_posts() ) :
+                    while ( $testimonials_query->have_posts() ) : $testimonials_query->the_post();
+                        $rating = get_field('rating') ?: 5;
+                        ?>
+                        <div class="testimonial-card">
+                            <div class="card-top">
+                                <div class="user-meta">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <div class="avatar" style="background-image: url('<?php echo esc_url(get_the_post_thumbnail_url(null, 'thumbnail')); ?>'); background-size: cover; background-position: center;"></div>
+                                    <?php else : ?>
+                                        <div class="avatar"></div>
+                                    <?php endif; ?>
+                                    <span class="name"><?php the_title(); ?></span>
+                                </div>
+                                <div class="rating-stars">
+                                    <?php for($i=1; $i<=5; $i++): ?>
+                                        <svg viewBox="0 0 24 24" fill="<?php echo ($i <= $rating) ? '#facc15' : '#e2e8f0'; ?>" stroke="none" style="width: 20px; height: 20px;">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg>
+                                    <?php endfor; ?>
+                                </div>
+                            </div>
+                            <p class="review-text"><?php echo esc_html(strip_tags(get_the_content())); ?></p>
                         </div>
-                        <div class="rating-stars">
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="review-text">العيادة نظيفة جدًا والدكتور شرح لي كل خطوات العلاج بكل وضوح.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="testimonial-card">
-                    <div class="card-top">
-                        <div class="user-meta">
-                            <div class="avatar"></div>
-                            <span class="name">خالد محمد</span>
-                        </div>
-                        <div class="rating-stars">
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                            <svg viewBox="0 0 24 24" fill="#facc15" stroke="none">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="review-text">العيادة نظيفة جدًا والدكتور شرح لي كل خطوات العلاج بكل وضوح.</p>
-                </div>
+                        <?php
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                    echo '<p style="text-align: center; margin: 40px auto; font-size: 1.2rem; color: #64748b;">لا توجد آراء مضافة حالياً.</p>';
+                endif;
+                ?>
             </div>
         </div>
     </section>

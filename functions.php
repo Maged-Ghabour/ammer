@@ -611,3 +611,76 @@ acf_add_local_field_group(array(
 ));
 
 endif;
+
+// Register 'testimonial' Custom Post Type
+function ammer_register_testimonial_cpt() {
+    $labels = array(
+        'name'               => 'آراء المرضى',
+        'singular_name'      => 'رأي مريض',
+        'menu_name'          => 'آراء المرضى',
+        'add_new'            => 'أضف رأي جديد',
+        'add_new_item'       => 'أضف رأي جديد',
+        'edit_item'          => 'تعديل الرأي',
+        'new_item'           => 'رأي جديد',
+        'view_item'          => 'عرض الرأي',
+        'search_items'       => 'ابحث في الآراء',
+        'not_found'          => 'لم يتم العثور على أي آراء',
+        'not_found_in_trash' => 'لا توجد آراء في سلة المهملات'
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'public'              => true,
+        'has_archive'         => false,
+        'publicly_queryable'  => false,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_position'       => 21,
+        'menu_icon'           => 'dashicons-testimonial',
+        'supports'            => array( 'title', 'editor', 'thumbnail' ),
+        'rewrite'             => false,
+    );
+
+    register_post_type( 'testimonial', $args );
+}
+add_action( 'init', 'ammer_register_testimonial_cpt' );
+
+// Add ACF Fields for 'testimonial' CPT
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array(
+    'key' => 'group_testimonial_fields',
+    'title' => 'Testimonial Details',
+    'fields' => array(
+        array(
+            'key' => 'field_testimonial_rating',
+            'label' => 'التقييم',
+            'name' => 'rating',
+            'type' => 'number',
+            'instructions' => 'اختر التقييم من 1 إلى 5',
+            'required' => 1,
+            'default_value' => 5,
+            'min' => 1,
+            'max' => 5,
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'testimonial',
+            ),
+        ),
+    ),
+    'menu_order' => 0,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => true,
+    'description' => '',
+));
+
+endif;
