@@ -138,7 +138,18 @@ get_header(); ?>
                     </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <p style="text-align: right; width: 100%; color: var(--text-light);">يرجى إضافة الإحصائيات من لوحة التحكم.</p>
+                    <div class="stat-item">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">نسبة الرضا</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">+15</span>
+                        <span class="stat-label">سنة خبرة</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">+5000</span>
+                        <span class="stat-label">ابتسامة جديدة</span>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
