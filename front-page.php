@@ -306,7 +306,7 @@ get_header(); ?>
         </div>
 
         <?php else : ?>
-            <p style="text-align: center;">لا توجد حالات مضافة حالياً.</p>
+            <p style="text-align: center; margin: 40px auto; font-size: 1.2rem; color: #64748b;">لا توجد حالات مضافة حالياً.</p>
         <?php endif; wp_reset_postdata(); ?>
 
         <div class="ba-action">

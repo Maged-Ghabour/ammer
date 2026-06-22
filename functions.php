@@ -535,17 +535,17 @@ function get_whatsapp_url() {
 // Register 'case' Custom Post Type
 function ammer_register_case_cpt() {
     $labels = array(
-        'name'               => '??????? (??? ????)',
-        'singular_name'      => '????',
-        'menu_name'          => '????? ??? ????',
-        'add_new'            => '??? ???? ?????',
-        'add_new_item'       => '??? ???? ?????',
-        'edit_item'          => '????? ??????',
-        'new_item'           => '???? ?????',
-        'view_item'          => '??? ??????',
-        'search_items'       => '???? ?? ???????',
-        'not_found'          => '?? ??? ?????? ??? ?? ?????',
-        'not_found_in_trash' => '?? ???? ????? ?? ??? ????????'
+        'name'               => 'الحالات (قبل وبعد)',
+        'singular_name'      => 'حالة',
+        'menu_name'          => 'حالات قبل وبعد',
+        'add_new'            => 'أضف حالة جديدة',
+        'add_new_item'       => 'أضف حالة جديدة',
+        'edit_item'          => 'تعديل الحالة',
+        'new_item'           => 'حالة جديدة',
+        'view_item'          => 'عرض الحالة',
+        'search_items'       => 'ابحث في الحالات',
+        'not_found'          => 'لم يتم العثور على أي حالات',
+        'not_found_in_trash' => 'لا توجد حالات في سلة المهملات'
     );
 
     $args = array(
@@ -574,7 +574,7 @@ acf_add_local_field_group(array(
     'fields' => array(
         array(
             'key' => 'field_case_before_img',
-            'label' => '???? ???',
+            'label' => 'صورة قبل',
             'name' => 'before_image',
             'type' => 'image',
             'return_format' => 'url',
@@ -583,7 +583,7 @@ acf_add_local_field_group(array(
         ),
         array(
             'key' => 'field_case_after_img',
-            'label' => '???? ???',
+            'label' => 'صورة بعد',
             'name' => 'after_image',
             'type' => 'image',
             'return_format' => 'url',
