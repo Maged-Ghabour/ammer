@@ -530,3 +530,84 @@ function get_whatsapp_url() {
 }
 
 
+
+
+// Register 'case' Custom Post Type
+function ammer_register_case_cpt() {
+    $labels = array(
+        'name'               => '??????? (??? ????)',
+        'singular_name'      => '????',
+        'menu_name'          => '????? ??? ????',
+        'add_new'            => '??? ???? ?????',
+        'add_new_item'       => '??? ???? ?????',
+        'edit_item'          => '????? ??????',
+        'new_item'           => '???? ?????',
+        'view_item'          => '??? ??????',
+        'search_items'       => '???? ?? ???????',
+        'not_found'          => '?? ??? ?????? ??? ?? ?????',
+        'not_found_in_trash' => '?? ???? ????? ?? ??? ????????'
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'public'              => true,
+        'has_archive'         => false,
+        'publicly_queryable'  => false,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_position'       => 20,
+        'menu_icon'           => 'dashicons-images-alt2',
+        'supports'            => array( 'title' ),
+        'rewrite'             => false,
+    );
+
+    register_post_type( 'case', $args );
+}
+add_action( 'init', 'ammer_register_case_cpt' );
+
+// Add ACF Fields for 'case' CPT
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array(
+    'key' => 'group_case_fields',
+    'title' => 'Case Images (Before & After)',
+    'fields' => array(
+        array(
+            'key' => 'field_case_before_img',
+            'label' => '???? ???',
+            'name' => 'before_image',
+            'type' => 'image',
+            'return_format' => 'url',
+            'preview_size' => 'medium',
+            'library' => 'all',
+        ),
+        array(
+            'key' => 'field_case_after_img',
+            'label' => '???? ???',
+            'name' => 'after_image',
+            'type' => 'image',
+            'return_format' => 'url',
+            'preview_size' => 'medium',
+            'library' => 'all',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'case',
+            ),
+        ),
+    ),
+    'menu_order' => 0,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => true,
+    'description' => '',
+));
+
+endif;
