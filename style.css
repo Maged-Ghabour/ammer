@@ -1,4 +1,4 @@
-﻿/*
+/*
 Theme Name: Ammer Theme
 Description: Custom WordPress Theme for Dr. Amer Dental Clinic. Built with ACF.
 Author: Antigravity
@@ -2041,16 +2041,6 @@ body {
     color: #fff;
     transform: translateY(-3px);
 }
-.social-links a svg {
-    width: 20px;
-    height: 20px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-.social-links a svg[fill="currentColor"] {
-    fill: currentColor;
-    stroke: none;
+.social-links a i {
+    font-size: 20px;
 }

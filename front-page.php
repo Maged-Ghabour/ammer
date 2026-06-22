@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Front Page
  */
@@ -428,38 +428,39 @@ get_header(); ?>
         </div>
 
         <div class="blog-grid">
-            <!-- Post 1 -->
+            <?php 
+            $blog_args = array(
+                'post_type'      => 'post',
+                'posts_per_page' => 3,
+                'post_status'    => 'publish'
+            );
+            $blog_query = new WP_Query($blog_args);
+            
+            if ( $blog_query->have_posts() ) :
+                while ( $blog_query->have_posts() ) : $blog_query->the_post(); 
+                    $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                    if (!$thumb_url) {
+                        $thumb_url = get_template_directory_uri() . '/assets/blog1.png';
+                    }
+            ?>
             <article class="blog-card">
-                <div class="blog-image">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/blog1.png" alt="كيف تحافظ على صحة أسنانك يوميًا؟">
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">كيف تحافظ على صحة أسنانك يوميًا؟</h3>
-                    <span class="blog-date">March 2, 2035</span>
-                </div>
+                <a href="<?php echo esc_url(get_permalink()); ?>" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="blog-image">
+                        <img loading="lazy" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title"><?php the_title(); ?></h3>
+                        <span class="blog-date"><?php echo get_the_date(); ?></span>
+                    </div>
+                </a>
             </article>
-
-            <!-- Post 2 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/blog2.png" alt="متى تحتاج لتبييض الأسنان؟">
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">متى تحتاج لتبييض الأسنان؟</h3>
-                    <span class="blog-date">March 2, 2035</span>
-                </div>
-            </article>
-
-            <!-- Post 3 -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/blog3.png" alt="كيف تختار أفضل عيادة أسنان؟">
-                </div>
-                <div class="blog-content">
-                    <h3 class="blog-title">كيف تختار أفضل عيادة أسنان؟</h3>
-                    <span class="blog-date">March 2, 2035</span>
-                </div>
-            </article>
+            <?php 
+                endwhile;
+                wp_reset_postdata();
+            else : 
+            ?>
+                <p style="text-align: center; width: 100%; grid-column: 1 / -1;">لا توجد مقالات حالياً.</p>
+            <?php endif; ?>
         </div>
     </section>
 
