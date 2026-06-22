@@ -25,7 +25,8 @@ get_header(); ?>
         <!-- Booking Area -->
         <div class="hero-booking" id="booking">
             <h3 class="booking-title"><?php echo get_field('booking_title') ? get_field('booking_title') : 'احجز موعدك الآن'; ?></h3>
-            <form action="#" method="POST" class="booking-form">
+            <form action="#" method="POST" class="booking-form" id="heroBookingForm" data-ajax-url="<?php echo admin_url('admin-ajax.php'); ?>">
+                <?php wp_nonce_field('submit_booking_nonce', 'booking_nonce'); ?>
                 <input type="text" name="name" class="form-control" placeholder="الاسم الكريم" required>
                 <input type="tel" name="phone" class="form-control" placeholder="رقم الجوال" required>
                 <div class="input-icon-wrapper">
@@ -80,12 +81,17 @@ get_header(); ?>
         if( $services_query->have_posts() ): 
             while( $services_query->have_posts() ) : $services_query->the_post();
                 $icon = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                $bg_icon = get_field('service_bg_icon');
                 $title = get_the_title();
                 $description = get_the_content();
             ?>
             <div class="service-card">
                 <div class="card-bg-icon">
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg1.png" alt="">
+                    <?php if($bg_icon): ?>
+                        <img loading="lazy" src="<?php echo esc_url($bg_icon); ?>" alt="">
+                    <?php else: ?>
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/bg1.png" alt="">
+                    <?php endif; ?>
                 </div>
                 <div class="card-icon">
                     <?php if($icon): ?>

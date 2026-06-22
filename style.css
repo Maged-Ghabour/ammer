@@ -5,7 +5,7 @@ Author: Antigravity
 Version: 1.0.0
 Text Domain: ammer
 */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
     --primary-color: #0d4b79;
@@ -14,7 +14,7 @@ Text Domain: ammer
     --text-light: #5a6474;
     --bg-color: #f4f6f9;
     --white: #ffffff;
-    --font-family: 'Tajawal', sans-serif;
+    --font-family: 'Alexandria', sans-serif;
 }
 
 * {
@@ -195,7 +195,8 @@ body {
 /* Booking Area */
 .hero-booking {
     grid-area: booking;
-    max-width: 360px;
+    max-width: 450px;
+    width: 100%;
     margin-top: 10px;
 }
 
@@ -1138,11 +1139,20 @@ body {
     gap: 20px;
 }
 
+.contact-info {
+    padding-right: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Added more space between items */
+}
+
 .contact-item {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 15px; /* Slight increase in gap between icon and text */
 }
 
 .contact-item span {
@@ -2043,4 +2053,15 @@ body {
 }
 .social-links a i {
     font-size: 20px;
+}
+
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

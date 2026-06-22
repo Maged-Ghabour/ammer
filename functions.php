@@ -63,7 +63,7 @@ function ammer_scripts() {
 	wp_enqueue_style( 'ammer-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
 
 	// Enqueue Google Fonts
-	wp_enqueue_style( 'ammer-fonts', 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap', array(), null );
+	wp_enqueue_style( 'ammer-fonts', 'https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap', array(), null );
 
 	// Enqueue FontAwesome
 	wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0' );
@@ -355,7 +355,7 @@ add_action('acf/init', 'ammer_register_acf_fields');
  */
 function ammer_login_stylesheet() {
     wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/login-style.css' );
-    wp_enqueue_style( 'ammer-fonts', 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap', array(), null );
+    wp_enqueue_style( 'ammer-fonts', 'https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap', array(), null );
 }
 add_action( 'login_enqueue_scripts', 'ammer_login_stylesheet' );
 
@@ -376,7 +376,7 @@ add_filter( 'login_headertext', 'ammer_login_logo_url_title' );
  */
 function ammer_admin_stylesheet() {
     wp_enqueue_style( 'custom-admin', get_template_directory_uri() . '/assets/css/admin-style.css' );
-    wp_enqueue_style( 'ammer-fonts', 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap', array(), null );
+    wp_enqueue_style( 'ammer-fonts', 'https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap', array(), null );
 }
 add_action( 'admin_enqueue_scripts', 'ammer_admin_stylesheet' );
 
@@ -429,6 +429,36 @@ function ammer_customize_register( $wp_customize ) {
         'label'       => __( 'TikTok URL', 'ammer' ),
         'section'     => 'ammer_contact_settings',
         'type'        => 'url',
+    ) );
+
+    $wp_customize->add_setting( 'contact_address', array(
+        'default'           => 'الرياض، المملكة العربية السعودية',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'contact_address', array(
+        'label'       => __( 'عنوان العيادة', 'ammer' ),
+        'section'     => 'ammer_contact_settings',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'contact_phone', array(
+        'default'           => '+966 50 000 0000',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'contact_phone', array(
+        'label'       => __( 'رقم الجوال للاتصال', 'ammer' ),
+        'section'     => 'ammer_contact_settings',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'contact_email', array(
+        'default'           => 'info@dramer.com',
+        'sanitize_callback' => 'sanitize_email',
+    ) );
+    $wp_customize->add_control( 'contact_email', array(
+        'label'       => __( 'البريد الإلكتروني', 'ammer' ),
+        'section'     => 'ammer_contact_settings',
+        'type'        => 'email',
     ) );
 }
 add_action( 'customize_register', 'ammer_customize_register' );
@@ -670,3 +700,171 @@ function ammer_register_service_cpt() {
     register_post_type( 'service', $args );
 }
 add_action( 'init', 'ammer_register_service_cpt', 0 );
+
+
+/**
+ * Add SweetAlert2 to enqueue scripts
+ */
+function ammer_enqueue_sweetalert() {
+    wp_enqueue_script( 'sweetalert2', 'https://cdn.jsdelivr.net/npm/sweetalert2@11', array(), null, true );
+}
+add_action( 'wp_enqueue_scripts', 'ammer_enqueue_sweetalert' );
+
+/**
+ * Register Appointment Custom Post Type
+ */
+function ammer_register_appointment_cpt() {
+    $labels = array(
+        'name'               => 'مواعيدنا',
+        'singular_name'      => 'موعد',
+        'menu_name'          => 'مواعيدنا',
+        'add_new'            => 'إضافة موعد (يدوي)',
+        'add_new_item'       => 'إضافة موعد جديد',
+        'edit_item'          => 'تفاصيل الموعد',
+        'new_item'           => 'موعد جديد',
+        'view_item'          => 'عرض الموعد',
+        'search_items'       => 'البحث في المواعيد',
+        'not_found'          => 'لا توجد مواعيد',
+        'not_found_in_trash' => 'لا توجد مواعيد في سلة المهملات',
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'public'              => false, // Only visible in dashboard
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'capability_type'     => 'post',
+        'hierarchical'        => false,
+        'menu_position'       => 21,
+        'menu_icon'           => 'dashicons-calendar-alt',
+        'supports'            => array( 'title' ),
+    );
+
+    register_post_type( 'appointment', $args );
+}
+add_action( 'init', 'ammer_register_appointment_cpt', 0 );
+
+/**
+ * Add Meta Box for Appointment Details
+ */
+function ammer_add_appointment_meta_box() {
+    add_meta_box(
+        'appointment_details',
+        'تفاصيل الموعد',
+        'ammer_appointment_meta_box_callback',
+        'appointment',
+        'normal',
+        'high'
+    );
+}
+add_action( 'add_meta_boxes', 'ammer_add_appointment_meta_box' );
+
+function ammer_appointment_meta_box_callback( $post ) {
+    $phone = get_post_meta( $post->ID, '_patient_phone', true );
+    $date = get_post_meta( $post->ID, '_appointment_date', true );
+    $time = get_post_meta( $post->ID, '_appointment_time', true );
+    
+    // Format phone for WhatsApp
+    $whatsapp_phone = preg_replace('/[^0-9]/', '', $phone);
+    if(strpos($whatsapp_phone, '0') === 0) {
+        $whatsapp_phone = '966' . substr($whatsapp_phone, 1);
+    }
+    
+    echo '<table class="form-table">';
+    echo '<tr><th><label>رقم الجوال</label></th><td><input type="text" readonly value="' . esc_attr($phone) . '" class="regular-text"> ';
+    if($whatsapp_phone) {
+        echo '<a href="https://wa.me/' . esc_attr($whatsapp_phone) . '" target="_blank" class="button button-primary" style="background-color: #25D366; border-color: #25D366; text-shadow: none;">تواصل عبر الواتساب</a>';
+    }
+    echo '</td></tr>';
+    
+    echo '<tr><th><label>تاريخ الموعد</label></th><td><input type="text" readonly value="' . esc_attr($date) . '" class="regular-text"></td></tr>';
+    echo '<tr><th><label>الوقت المفضل</label></th><td><input type="text" readonly value="' . esc_attr($time) . '" class="regular-text"></td></tr>';
+    echo '</table>';
+}
+
+/**
+ * Handle AJAX Booking Submission
+ */
+function ammer_handle_booking_submission() {
+    // Check nonce
+    if ( ! isset( $_POST['booking_nonce'] ) || ! wp_verify_nonce( $_POST['booking_nonce'], 'submit_booking_nonce' ) ) {
+        wp_send_json_error( array( 'message' => 'عذراً، هنالك خطأ أمني. يرجى تحديث الصفحة والمحاولة مرة أخرى.' ) );
+    }
+
+    // Sanitize inputs
+    $name  = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
+    $phone = isset($_POST['phone']) ? sanitize_text_field($_POST['phone']) : '';
+    $date  = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : '';
+    $time  = isset($_POST['time']) ? sanitize_text_field($_POST['time']) : '';
+
+    if ( empty($name) || empty($phone) || empty($date) ) {
+        wp_send_json_error( array( 'message' => 'يرجى تعبئة جميع الحقول المطلوبة.' ) );
+    }
+
+    // Create post title
+    $post_title = 'موعد - ' . $name . ' - ' . $date;
+
+    // Insert post
+    $post_data = array(
+        'post_title'    => $post_title,
+        'post_status'   => 'publish',
+        'post_type'     => 'appointment',
+    );
+
+    $post_id = wp_insert_post( $post_data );
+
+    if ( is_wp_error( $post_id ) ) {
+        wp_send_json_error( array( 'message' => 'عذراً، حدث خطأ أثناء تسجيل الموعد. يرجى المحاولة لاحقاً.' ) );
+    }
+
+    // Save meta fields
+    update_post_meta( $post_id, '_patient_phone', $phone );
+    update_post_meta( $post_id, '_appointment_date', $date );
+    update_post_meta( $post_id, '_appointment_time', $time );
+
+    wp_send_json_success( array( 'message' => 'تم تسجيل الموعد بنجاح! سنتواصل معك قريباً لتأكيد الموعد.' ) );
+}
+add_action( 'wp_ajax_submit_booking', 'ammer_handle_booking_submission' );
+add_action( 'wp_ajax_nopriv_submit_booking', 'ammer_handle_booking_submission' );
+
+
+
+/**
+ * ACF Field Group for Service Post Type (Background Icon)
+ */
+function ammer_register_service_bg_icon_acf() {
+    if( function_exists('acf_add_local_field_group') ):
+
+    acf_add_local_field_group(array(
+        'key' => 'group_ammer_service',
+        'title' => 'إعدادات الخدمة',
+        'fields' => array(
+            array(
+                'key' => 'field_service_bg_icon',
+                'label' => 'صورة الخلفية (Background Icon)',
+                'name' => 'service_bg_icon',
+                'type' => 'image',
+                'return_format' => 'url',
+                'instructions' => 'الصورة الخلفية المزخرفة التي تظهر خلف الأيقونة الرئيسية في كارت الخدمة.',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'service',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'active' => true,
+    ));
+
+    endif;
+}
+add_action('acf/init', 'ammer_register_service_bg_icon_acf');

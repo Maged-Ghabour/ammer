@@ -46,15 +46,15 @@
                 <ul class="contact-info">
                     <li class="contact-item">
                         <i class="fas fa-map-marker-alt" style="font-size: 18px; color: #94a3b8; width: 20px; text-align: center; flex-shrink: 0;"></i>
-                        <span>الرياض، المملكة العربية السعودية</span>
+                        <span><?php echo esc_html(get_theme_mod('contact_address', 'الرياض، المملكة العربية السعودية')); ?></span>
                     </li>
                     <li class="contact-item">
                         <i class="fas fa-phone-alt" style="font-size: 18px; color: #94a3b8; width: 20px; text-align: center; flex-shrink: 0;"></i>
-                        <span dir="ltr">+966 50 000 0000</span>
+                        <span dir="ltr"><?php echo esc_html(get_theme_mod('contact_phone', '+966 50 000 0000')); ?></span>
                     </li>
                     <li class="contact-item">
                         <i class="fas fa-envelope" style="font-size: 18px; color: #94a3b8; width: 20px; text-align: center; flex-shrink: 0;"></i>
-                        <span>info@dramer.com</span>
+                        <span><?php echo esc_html(get_theme_mod('contact_email', 'info@dramer.com')); ?></span>
                     </li>
                 </ul>
             </div>

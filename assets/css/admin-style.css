@@ -1,11 +1,11 @@
 /* --- Ammer Custom Admin Dashboard Styles --- */
 
-/* Change default font to Tajawal */
+/* Change default font to Alexandria */
 body.wp-admin,
 .wp-admin h1, .wp-admin h2, .wp-admin h3, .wp-admin h4, .wp-admin h5, .wp-admin h6,
 .wp-admin p, .wp-admin a, .wp-admin li, .wp-admin span, .wp-admin div,
 #adminmenu, #wpadminbar {
-    font-family: 'Tajawal', sans-serif !important;
+    font-family: 'Alexandria', sans-serif !important;
 }
 
 /* Fix missing dashboard icons */
@@ -81,7 +81,7 @@ body.wp-admin,
 
 /* ACF Customizations in Admin */
 .acf-box h2.hndle {
-    font-family: 'Tajawal', sans-serif !important;
+    font-family: 'Alexandria', sans-serif !important;
     font-size: 16px !important;
     font-weight: 700 !important;
     color: #0d4b79 !important;

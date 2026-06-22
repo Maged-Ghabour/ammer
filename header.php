@@ -13,7 +13,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-    <div class="watermark">DR-Amer</div>
+
     <div class="page-wrapper">
         <!-- Header -->
         <header class="header container">
