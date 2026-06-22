@@ -71,12 +71,17 @@ get_header(); ?>
 
     <div class="services-grid">
         <?php 
-        if( have_rows('services_list') ): 
-            while( have_rows('services_list') ) : the_row();
-                $icon = get_sub_field('icon');
-                $title = get_sub_field('title');
-                $description = get_sub_field('desc');
-                if(!$title) continue;
+        $services_query = new WP_Query(array(
+            'post_type' => 'service',
+            'posts_per_page' => -1,
+            'post_status' => 'publish'
+        ));
+
+        if( $services_query->have_posts() ): 
+            while( $services_query->have_posts() ) : $services_query->the_post();
+                $icon = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                $title = get_the_title();
+                $description = get_the_content();
             ?>
             <div class="service-card">
                 <div class="card-bg-icon">
@@ -91,10 +96,10 @@ get_header(); ?>
                 </div>
                 <div class="card-content">
                     <h4 class="card-title"><?php echo esc_html($title); ?></h4>
-                    <p class="card-desc"><?php echo esc_html($description); ?></p>
+                    <p class="card-desc"><?php echo wp_strip_all_tags($description); ?></p>
                 </div>
             </div>
-            <?php endwhile; ?>
+            <?php endwhile; wp_reset_postdata(); ?>
         <?php else: ?>
             <p style="text-align: center; width: 100%; grid-column: 1 / -1;">يرجى إضافة الخدمات من لوحة التحكم.</p>
         <?php endif; ?>

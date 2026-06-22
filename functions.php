@@ -144,34 +144,7 @@ acf_add_local_field_group(array(
 			'type' => 'textarea',
 			'default_value' => 'نقدم مجموعة شاملة من خدمات طب وتجميل الأسنان...',
 		),
-        array(
-            'key' => 'field_services_list',
-            'label' => 'Services List (قابلة لإعادة الترتيب)',
-            'name' => 'services_list',
-            'type' => 'repeater',
-            'layout' => 'block',
-            'button_label' => 'أضف خدمة',
-            'sub_fields' => array(
-                array(
-                    'key' => 'field_service_icon',
-                    'label' => 'Icon (Image URL)',
-                    'name' => 'icon',
-                    'type' => 'text',
-                ),
-                array(
-                    'key' => 'field_service_title',
-                    'label' => 'Title',
-                    'name' => 'title',
-                    'type' => 'text',
-                ),
-                array(
-                    'key' => 'field_service_desc',
-                    'label' => 'Description',
-                    'name' => 'desc',
-                    'type' => 'textarea',
-                ),
-            ),
-        ),
+
         
         // TRUST SECTION
         array(
@@ -661,3 +634,39 @@ function ammer_register_faq_cpt() {
     register_post_type( 'faq', $args );
 }
 add_action( 'init', 'ammer_register_faq_cpt' );
+
+
+// Register Service Post Type
+function ammer_register_service_cpt() {
+    $labels = array(
+        'name'               => 'الخدمات',
+        'singular_name'      => 'خدمة',
+        'menu_name'          => 'الخدمات',
+        'add_new'            => 'أضف خدمة جديدة',
+        'add_new_item'       => 'أضف خدمة جديدة',
+        'edit_item'          => 'تعديل الخدمة',
+        'new_item'           => 'خدمة جديدة',
+        'view_item'          => 'عرض الخدمة',
+        'search_items'       => 'البحث في الخدمات',
+        'not_found'          => 'لا توجد خدمات',
+        'not_found_in_trash' => 'لا توجد خدمات في سلة المهملات',
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'public'              => true,
+        'has_archive'         => false,
+        'publicly_queryable'  => true,
+        'query_var'           => true,
+        'rewrite'             => array( 'slug' => 'service' ),
+        'capability_type'     => 'post',
+        'hierarchical'        => false,
+        'menu_position'       => 20,
+        'menu_icon'           => 'dashicons-hammer',
+        'supports'            => array( 'title', 'editor', 'thumbnail' ),
+        'show_in_rest'        => true,
+    );
+
+    register_post_type( 'service', $args );
+}
+add_action( 'init', 'ammer_register_service_cpt', 0 );
