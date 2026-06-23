@@ -1945,6 +1945,15 @@ body {
         padding: 30px 10px !important;
         margin-bottom: 15px !important;
     }
+    
+    .faq-question h3 {
+        font-size: 1rem !important;
+    }
+    
+    .card-title {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2036,6 +2045,7 @@ body {
 /* Social Links Footer */
 .social-links {
     display: flex;
+    justify-content: center;
     gap: 15px;
     margin-top: 15px;
 }
@@ -2076,4 +2086,17 @@ body {
         z-index: 9999;
         position: relative;
     }
+}
+
+
+/* Custom Title Colors */
+.faq-info .section-title, 
+.faq-question h3, 
+.newsletter-title h2, 
+.blog-header .section-title, 
+.blog-title, 
+.ba-header .section-title, 
+.journey-title, 
+.trust-title {
+    color: #0E2A42 !important;
 }
