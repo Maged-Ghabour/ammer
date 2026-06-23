@@ -1,5 +1,4 @@
-    
-        document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
             gsap.registerPlugin(ScrollTrigger);
 
             // 1. Hero Section Animation
@@ -160,11 +159,8 @@
                     }
                 );
             }
-        });
-    
-    
-        document.addEventListener('DOMContentLoaded', function () {
-            const container = document.getElementById('ba-container');
+
+const container = document.getElementById('ba-container');
             const beforeLayer = document.getElementById('ba-before-layer');
             const handle = document.getElementById('ba-handle');
             const thumbnails = document.querySelectorAll('.thumbnail');
@@ -281,25 +277,6 @@
                     }
                 });
             });
-        });
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Booking Form AJAX Submission
 const bookingForm = document.getElementById('heroBookingForm');
@@ -371,3 +348,4 @@ if (bookingForm) {
         });
     });
 }
+});

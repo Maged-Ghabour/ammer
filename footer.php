@@ -66,30 +66,6 @@
     </footer>
 </div> <!-- /page-wrapper -->
 
-<script>
-    // Mobile Menu Logic
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const closeMenuBtn = document.querySelector('.close-menu-btn');
-    const mainNav = document.querySelector('.main-nav');
-    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
-
-    if (mobileMenuBtn && mainNav) {
-        function openMenu() {
-            mainNav.classList.add('open');
-            if(mobileOverlay) mobileOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeMenu() {
-            mainNav.classList.remove('open');
-            if(mobileOverlay) mobileOverlay.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        mobileMenuBtn.addEventListener('click', openMenu);
-        if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
-        if(mobileOverlay) mobileOverlay.addEventListener('click', closeMenu);
-    }
-</script>
-
 <?php wp_footer(); ?>
 </body>
 </html>
