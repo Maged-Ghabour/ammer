@@ -172,6 +172,12 @@ acf_add_local_field_group(array(
 			'type' => 'textarea',
 			'default_value' => 'نقدم مجموعة شاملة من خدمات طب وتجميل الأسنان...',
 		),
+        array(
+			'key' => 'field_services_more_link',
+			'label' => 'رابط عرض المزيد (الخدمات)',
+			'name' => 'services_more_link',
+			'type' => 'url',
+		),
 
         
         // TRUST SECTION
@@ -279,6 +285,12 @@ acf_add_local_field_group(array(
             'name' => 'ba_subtitle',
             'type' => 'textarea',
             'default_value' => 'نتائج حقيقية تمنحك ابتسامة أكثر جمالاً وثقة.',
+        ),
+        array(
+            'key' => 'field_ba_more_link',
+            'label' => 'رابط عرض المزيد (قبل وبعد)',
+            'name' => 'ba_more_link',
+            'type' => 'url',
         ),
 
         // TESTIMONIALS SECTION

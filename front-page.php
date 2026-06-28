@@ -72,7 +72,13 @@ get_header(); ?>
             <p class="section-subtitle"><?php echo get_field('services_subtitle') ? get_field('services_subtitle') : 'نقدم مجموعة شاملة من خدمات طب وتجميل الأسنان...'; ?></p>
         </div>
         <div class="services-arrows">
-            <a href="#" class="view-more-link">عرض كل الخدمات</a>
+            <?php 
+            $services_more_link = get_field('services_more_link');
+            if ($services_more_link) : ?>
+                <a href="<?php echo esc_url($services_more_link); ?>" class="view-more-link">عرض كل الخدمات</a>
+            <?php else: ?>
+                <a href="#" class="view-more-link">عرض كل الخدمات</a>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -315,7 +321,13 @@ get_header(); ?>
         <?php endif; wp_reset_postdata(); ?>
 
         <div class="ba-action">
-            <a href="#" class="view-more-link">رؤية المزيد ....</a>
+            <?php 
+            $ba_more_link = get_field('ba_more_link');
+            if ($ba_more_link) : ?>
+                <a href="<?php echo esc_url($ba_more_link); ?>" class="view-more-link">رؤية المزيد ....</a>
+            <?php else: ?>
+                <a href="#" class="view-more-link">رؤية المزيد ....</a>
+            <?php endif; ?>
         </div>
     </section>
 

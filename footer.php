@@ -32,12 +32,23 @@
             <!-- Middle Columns -->
             <div class="footer-links">
                 <h4>روابط سريعة</h4>
+                <?php
+                if ( has_nav_menu( 'footer' ) ) {
+                    wp_nav_menu( array(
+                        'theme_location' => 'footer',
+                        'container'      => false,
+                        'menu_class'     => '',
+                        'fallback_cb'    => false,
+                    ) );
+                } else {
+                ?>
                 <ul>
                     <li><a href="#">الرئيسية</a></li>
                     <li><a href="#">عن العيادة</a></li>
                     <li><a href="#">خدماتنا</a></li>
                     <li><a href="<?php echo esc_url(get_whatsapp_url()); ?>" target="_blank">احجز موعد</a></li>
                 </ul>
+                <?php } ?>
             </div>
 
             <!-- Left Column -->
